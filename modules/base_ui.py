@@ -1,12 +1,13 @@
 from abc import ABC, abstractmethod
+
 from kivy.app import App
-import keyboard
+
 
 class BaseUIModule(App, ABC):
     """
     Abstract base class for an arcade controller UI
     """
-    
+
     def __init__(self):
         super().__init__()
 

@@ -1,8 +1,9 @@
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.button import Button
+import pyautogui as keyboard
 from kivy.core.window import Window
+from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
+
 from modules.base_ui import BaseUIModule
-import keyboard
 
 BUTTON_NAMES_TOP = ["YELLOW_L", "BLUE_L", "BLUE_R", "YELLOW_R"]
 BUTTON_NAMES_BOT = ["WHITE_L", "GREEN_L", "RED", "GREEN_R", "WHITE_R"]
@@ -82,12 +83,12 @@ class PopnMusicController(BaseUIModule):
 
     def on_button_press(self, instance):
         instance.background_color = (1, 0.5, 0.5, 1)
-        keyboard.press(KEY_MAPPINGS[instance.text])
+        keyboard.keyDown(KEY_MAPPINGS[instance.text])
         print(f"{instance.text} pressed")
 
     def on_button_release(self, instance):
         instance.background_color = (0.5, 0.8, 1, 1)
-        keyboard.release(KEY_MAPPINGS[instance.text])
+        keyboard.keyUp(KEY_MAPPINGS[instance.text])
         print(f"{instance.text} released")
 
 

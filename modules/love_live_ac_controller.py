@@ -1,10 +1,11 @@
-from kivy.app import App
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.button import Button
+from math import cos, pi, sin
+
 from kivy.core.window import Window
-from math import pi, cos, sin
+from kivy.uix.button import Button
+from kivy.uix.floatlayout import FloatLayout
+
 from modules.base_ui import BaseUIModule
-import keyboard
+
 
 class LoveLiveController(BaseUIModule):
     def build(self):
@@ -55,7 +56,7 @@ class LoveLiveController(BaseUIModule):
 
     def on_button_release(self, instance):
         """Revert button appearance when released."""
-        instance.background_color = (0.5, 0.8, 1, 1) 
+        instance.background_color = (0.5, 0.8, 1, 1)
         print(f"{instance.text} released")
 
 if __name__ == "__main__":
