@@ -3,11 +3,32 @@ from math import cos, pi, sin
 from kivy.core.window import Window
 from kivy.uix.button import Button
 from kivy.uix.floatlayout import FloatLayout
+from kivy.graphics import Ellipse, Color
+from pynput.keyboard import Controller
 
 from modules.base_ui import BaseUIModule
 
+KEY_MAPPINGS = {
+    "RHYTHM_1": "q",
+    "RHYTHM_2": "w",
+    "RHYTHM_3": "e",
+    "RHYTHM_4": "r",
+    "RHYTHM_5": "t",
+    "RHYTHM_6": "y",
+    "RHYTHM_7": "u",
+    "RHYTHM_8": "i",
+    "RHYTHM_9": "o",
+}
+
+BUTTON_COLOR = (1, 1, 1, 1)  # White
 
 class LoveLiveController(BaseUIModule):
+
+    def __init__(self):
+        super().__init__()
+        self._keyboard = Controller()
+        self.button_graphics = {}
+
     def build(self):
         self.layout = FloatLayout()
         self.num_buttons = 9
@@ -15,10 +36,11 @@ class LoveLiveController(BaseUIModule):
 
         for i in range(self.num_buttons):
             button = Button(
-                text=f"Button {i + 1}",
+                text=f"RHYTHM_{9 - i}",
                 size_hint=(None, None),
-                background_color=(0.5, 0.8, 1, 1),
-                font_size=20,
+                background_color=(0, 0, 0, 0),
+                font_size=0,
+                background_normal=''
             )
             button.bind(on_press=self.on_button_press)
             button.bind(on_release=self.on_button_release)
@@ -48,15 +70,24 @@ class LoveLiveController(BaseUIModule):
 
             button.size = (button_size, button_size)
             button.pos = (x - button_size / 2, y - button_size / 2)
+            with button.canvas.before:
+                button.canvas.before.clear()
+                color = Color(*BUTTON_COLOR)
+                ellipse = Ellipse(pos=button.pos, size=button.size)
+                self.button_graphics[button] = (color, ellipse)
 
     def on_button_press(self, instance):
         """Change button appearance when pressed."""
-        instance.background_color = (1, 0.5, 0.5, 1)
+        color, _ = self.button_graphics[instance]
+        color.rgba = (1, 0.5, 0.5, 1)
+        self._keyboard.press(KEY_MAPPINGS[instance.text])
         print(f"{instance.text} pressed")
 
     def on_button_release(self, instance):
         """Revert button appearance when released."""
-        instance.background_color = (0.5, 0.8, 1, 1)
+        color, _ = self.button_graphics[instance]
+        color.rgba = BUTTON_COLOR
+        self._keyboard.release(KEY_MAPPINGS[instance.text])
         print(f"{instance.text} released")
 
 if __name__ == "__main__":
