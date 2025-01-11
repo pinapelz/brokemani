@@ -1,0 +1,9 @@
+{
+    "short_name": "i2DX",
+    "name": "i2DX rhythm game controller",
+    "icons": [
+        {"src": "skins/default/icon.png", "sizes": "144x144", "type": "image/png"}
+    ],
+    "start_url": "/",
+    "display": "standalone"
+}

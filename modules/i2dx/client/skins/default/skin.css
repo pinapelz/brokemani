@@ -1,0 +1,58 @@
+
+/* style for IIDX keys */
+.iidx_1,
+.iidx_2,
+.iidx_3,
+.iidx_4,
+.iidx_5,
+.iidx_6,
+.iidx_7
+{
+	border: 4px solid #454443;
+	background: #090807;
+}
+
+/* style for IIDX keys (pressed state) */
+.iidx_1.state-pressed,
+.iidx_2.state-pressed,
+.iidx_3.state-pressed,
+.iidx_4.state-pressed,
+.iidx_5.state-pressed,
+.iidx_6.state-pressed,
+.iidx_7.state-pressed
+{
+	background: #8b8685;
+	border-color: #bef;
+}
+
+/* style for turntable */
+.turntable
+{
+	background: #252423;
+}
+
+/* style for spinning part of turntable */
+.turntable .turntable-inner
+{
+	position: absolute;
+	width: 400px; height: 400px;
+	margin-top: -200px; margin-left: -200px;
+	text-align: center;
+	font: bold 100px/400px Helvetica, sans-serif;
+	color: #8b8685;
+	background: #151413;
+	border-radius: 200px;
+	border: 4px solid #454443;
+}
+
+/* turntable style when spinning clockwise */
+.turntable.state-cw
+{
+	background: #452423;
+}
+
+/* turntable style when spinning counterclockwise */
+.turntable.state-ccw
+{
+	background: #252443;
+}
